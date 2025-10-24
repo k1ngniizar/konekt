@@ -1,23 +1,38 @@
 import React from 'react'
+import useConversation from '../../zustand/useConversation';
 
-function Conversation() {
+function Conversation({conversations}) {
+  const {selectedConversation, setSelectedConversation} = useConversation()
+
   return (
     <>
-    <section className='flex gap-2 items-center hover:bg-sky-500 rounded px-2 py-1 cursor-pointer'>
-      <div className='avatar avatar-online'>
-        <figure className='size-12 rounded-full overflow-hidden'>
-          <img src="/k2ng.jpg" alt="user avatar" className='object-cover' />
-        </figure>
-      </div>
-      <div className='flex flex-col flex-1'>
-        <div className='flex gap-3 justify-between'>
-          <p className='font-bold text-gray-300'>John Doe</p>
-          <span className='text-xl'>😒</span>
-        </div>
-      </div>
-    </section>
+    {
+      conversations.map((conversation, index) => {
+        const isLastIdx = index === conversations.length - 1;
+        const isSelected = selectedConversation?._id === conversation._id;
+        return (
+          <section key={conversation._id} className='w-full'>
+          <button onClick={()=> setSelectedConversation(conversation)}  className={`flex gap-2 items-center  rounded w-full px-2 py-1 transition-all cursor-pointer ${isSelected ? "bg-sky-600 ":"hover:bg-sky-900"}`}>
+            <div className='avatar avatar-online'>
+              <figure className='size-12 rounded-full overflow-hidden'>
+                <img src={conversation.profilePic} alt="user avatar" className='object-cover' />
+              </figure>
+            </div>
+            <div className='flex flex-col flex-1'>
+              <div className='flex gap-3 justify-between'>
+                <p className='font-bold text-gray-300'>{conversation.fullName.split(" ")[0]}</p>
+                <span className='text-xl'>😒</span>
+              </div>
+            </div>
+          </button>
 
-    <div className='divider my-0 py-0 h-1'/>
+          {
+            isLastIdx ? null : <div className='w-full divider my-0 py-0 h-1'/>
+          }
+          </section>
+        )
+      })
+    }
     </>
   )
 }

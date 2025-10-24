@@ -1,6 +1,26 @@
+import { Link } from "react-router-dom"
 import GenderCheckbox from "./GenderCheckbox"
+import { useState } from "react"
+import useSignup from "../../hooks/useSignup"
+import {FaSpinner} from "react-icons/fa6"
 
 function Signup() {
+
+  const {loading, signup} = useSignup()
+
+  const [inputs, setInputs] = useState({
+    fullName: "",
+    username: "",
+    password: "",
+    confirmPassword: "",
+    gender: ""
+  })
+
+  const handleSubmit = async (e)=>{
+    e.preventDefault()
+    await signup(inputs)
+  }
+
   return (
     <div className="flex flex-col items-center justify-center min-w-96 mx-auto">
       <div className="w-full p-6 rounded-lg shadow-md bg-gray-400/10">
@@ -8,36 +28,70 @@ function Signup() {
           Sign up
           <span className="text-blue-500"> Konekt</span>
         </h1>
-        <form >
+        <form onSubmit={handleSubmit} >
           <div>
-            <label className="label p-2">
+            <label htmlFor="fullname" className="label p-2">
               <span className="text-base label-text">Fullname</span>
             </label>
-            <input type="text" placeholder="Enter fullname" className="w-full input h-10" />
+            <input 
+              type="text"
+              name="fullname"
+              id="fullname"
+              value={inputs.fullName}
+              onChange={(e)=> setInputs({...inputs, fullName: e.currentTarget.value}) }
+              placeholder="Enter fullname"
+              className="w-full input h-10"
+            />
           </div>
           <div>
-            <label className="label p-2">
+            <label htmlFor="username" className="label p-2">
               <span className="text-base label-text">Username</span>
             </label>
-            <input type="text" placeholder="Enter username" className="w-full input h-10" />
+            <input 
+              type="text" 
+              name="username"
+              id="username"
+              value={inputs.username}
+              onChange={(e) => setInputs({...inputs, username: e.currentTarget.value})}
+              placeholder="Enter username" 
+              className="w-full input h-10" 
+            />
           </div>
           <div>
-            <label className="label p-2">
+            <label htmlFor="password" className="label p-2">
               <span className="text-base label-text">Password</span>
             </label>
-            <input type="password" placeholder="Enter password" className="w-full input h-10" />
+            <input 
+              type="password" 
+              name="password"
+              id="password"
+              value={inputs.password}
+              onChange={(e)=> setInputs({...inputs, password: e.currentTarget.value})}
+              placeholder="Enter password" 
+              className="w-full input h-10" 
+            />
           </div>
           <div>
-            <label className="label p-2">
+            <label htmlFor="confirmPassword" className="label p-2">
               <span className="text-base label-text">Confirm password</span>
             </label>
-            <input type="text" placeholder="Confirm password" className="w-full input h-10" />
+            <input 
+              type="password" 
+              name="confirmPassword"
+              id="confirmPassword"
+              value={inputs.confirmPassword}
+              onChange={(e)=> setInputs({...inputs, confirmPassword: e.currentTarget.value})}
+              placeholder="Confirm password" 
+              className="w-full input h-10" 
+            />
           </div>
-          <GenderCheckbox/>
-          <a href="#" className="text-sm hover:underline hover:text-blue-600 mt-2 inline-block">
+          <GenderCheckbox inputs={inputs} setInputs={setInputs}/>
+          <Link to="/login" className="text-sm hover:underline hover:text-blue-600 mt-2 inline-block">
             Already have have an account?
-          </a>
-          <button className="btn btn-block btn-sm mt-2">Sign up</button>
+          </Link>
+          <button className="btn btn-block btn-sm mt-2">
+            {loading ? <FaSpinner className="animate-spin"/> : "Sign up"}
+          </button>
         </form>
       </div>
     </div>

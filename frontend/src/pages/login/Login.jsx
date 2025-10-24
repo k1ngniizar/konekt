@@ -1,5 +1,17 @@
+import { useState } from "react"
+import { Link } from "react-router-dom"
+import useLogin from "../../hooks/useLogin"
+import { FaSpinner } from "react-icons/fa6"
 
 function Login() {
+  const [username, setUsername] = useState("")
+   const [password, setPassword] = useState("")
+   const {loading, login} = useLogin()
+
+   const handleSubmit = async (e) => {
+    e.preventDefault()
+    await login(username,password)
+   }
   return (
     <div className="flex flex-col items-center justify-center min-w-96 mx-auto">
       <div className="w-full p-6 rounded-lg shadow-md bg-gray-400/10">
@@ -7,23 +19,25 @@ function Login() {
           Login
           <span className="text-blue-500"> Konekt</span>
         </h1>
-        <form >
+        <form onSubmit={handleSubmit}>
           <div>
-            <label className="label p-2">
+            <label htmlFor="username" className="label p-2">
               <span className="text-base label-text">Username</span>
             </label>
-            <input type="text" placeholder="Enter username" className="w-full input h-10" />
+            <input onChange={(e) => setUsername(e.currentTarget.value)} type="text" id="username" name="username" placeholder="Enter username" className="w-full input h-10" />
           </div>
           <div>
-            <label className="label p-2">
+            <label htmlFor="password" className="label p-2">
               <span className="text-base label-text">Password</span>
             </label>
-            <input type="password" placeholder="Enter password" className="w-full input h-10" />
+            <input onChange={(e) => setPassword(e.currentTarget.value)} type="password" id="password" name="password" placeholder="Enter password" className="w-full input h-10" />
           </div>
-          <a href="#" className="text-sm hover:underline hover:text-blue-600 mt-2 inline-block">
+          <Link to="/signup" className="text-sm hover:underline hover:text-blue-600 mt-2 inline-block">
             Don't have an account?
-          </a>
-          <button className="btn btn-block btn-sm mt-2">Login</button>
+          </Link>
+          <button className="btn btn-block btn-sm mt-2">
+            {loading ? <FaSpinner className="animate-spin"/> : "Login"}
+          </button>
         </form>
       </div>
     </div>
