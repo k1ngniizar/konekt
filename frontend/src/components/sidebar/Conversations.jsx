@@ -9,7 +9,7 @@ function Conversations() {
   // console.log(conversations)
 
   return (
-    <div className='py-2 flex flex-col overflow-hidden'>
+    <div className='py-2 flex flex-col overflow-auto'>
       {
         loading ? (
           <div className='min-h-[400px] my-auto w-full items-center justify-center flex'>

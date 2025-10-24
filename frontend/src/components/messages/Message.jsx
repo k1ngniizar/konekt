@@ -7,6 +7,7 @@ function Message({message}) {
   const {authUser} = useAuthContext()
   const {selectedConversation} = useConversation()
   const sentBy = message.senderId === authUser._id;
+  const shakeClass = message.shouldShake ? "shake" : "";
   return (
     <article
      className={`${sentBy ? "chat-end" : "chat-start"} chat`}>
@@ -15,7 +16,7 @@ function Message({message}) {
           <img src={sentBy ? authUser.profilePic : selectedConversation.profilePic} alt={"user avatar"} />
         </figure>
       </div>
-      <div className={`${sentBy ? "bg-blue-500" : "bg-blue-900"}  chat-bubble text-white `}>{message.message}</div>
+      <div className={`${sentBy ? "bg-blue-500" : "bg-blue-900"}  chat-bubble ${shakeClass} text-white `}>{message.message}</div>
       <div className='chat-footer text-xs flex gap-1 items-center text-gray-500'>{formatDate(message.createdAt)}</div>
     </article>
   )

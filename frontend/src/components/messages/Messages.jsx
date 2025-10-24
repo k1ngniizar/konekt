@@ -3,11 +3,12 @@ import useGetMessages from '../../hooks/useGetMessages'
 import { FaSpinner } from 'react-icons/fa6'
 import { TiMessages } from 'react-icons/ti'
 import { useEffect, useRef } from 'react'
+import useListenMessages from '../../hooks/useListenMessages'
 
 function Messages() {
   // const {messages} = useConversation()
   const {loading, messages} = useGetMessages()
-
+  useListenMessages()
   const lastMessageRef = useRef()
 
   useEffect(()=>{
