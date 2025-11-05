@@ -10,7 +10,7 @@ function Home() {
       
         <BiChat 
         onClick={()=>setIsNavOpen(!isNavOpen)}
-        className="size-6 absolute sm:hidden right-3 top-2 hover:cursor-pointer shadow-sm hover:text-gray-400 active:text-gray-700"
+        className="size-6 absolute sm:hidden right-3 top-2 hover:cursor-pointer shadow-md p-1 bg-gray-700 rounded text-gray-300 hover:text-gray-400 active:text-gray-700"
         />
       
       <Sidebar setIsNavOpen={setIsNavOpen} isNavOpen={isNavOpen}/>

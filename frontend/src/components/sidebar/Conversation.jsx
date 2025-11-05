@@ -32,7 +32,7 @@ function Conversation({conversations, setIsNavOpen}) {
             <div className='flex flex-col flex-1'>
               <div className='flex gap-3 justify-between'>
                 <p className='font-bold text-gray-300'>{conversation.fullName.split(" ")[0]}</p>
-                <BiChat className='text-gray-600'/>
+                <BiChat className={` ${isOnline? "text-sky-300":"text-gray-600"}`}/>
               </div>
             </div>
           </button>

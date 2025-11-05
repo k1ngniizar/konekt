@@ -16,7 +16,7 @@ function Sidebar({isNavOpen, setIsNavOpen}) {
         </section>
       )
     }
-    <section className='relative border border-slate-500 p-4 hidden sm:flex flex-col'>
+    <section className='relative border-r border-slate-500 p-4 hidden sm:flex flex-col'>
       <SearchInput />
       <div className='divider px-3'/>
       <Conversations />
