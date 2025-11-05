@@ -2,7 +2,7 @@ import React from 'react'
 import useConversation from '../../zustand/useConversation';
 import { useSocketContext } from '../../context/SocketContext';
 
-function Conversation({conversations}) {
+function Conversation({conversations, setIsNavOpen}) {
   const {selectedConversation, setSelectedConversation} = useConversation()
   const {onlineUsers} = useSocketContext();
 
@@ -17,7 +17,12 @@ function Conversation({conversations}) {
         const isOnline = onlineUsers.includes(conversation._id)
         return (
           <section key={conversation._id} className='w-full'>
-          <button onClick={()=> setSelectedConversation(conversation)}  className={`flex gap-2 items-center  rounded w-full px-2 py-1 transition-all cursor-pointer ${isSelected ? "bg-sky-600 ":"hover:bg-sky-900"}`}>
+          <button onClick={()=>{
+             setSelectedConversation(conversation)
+             if(setIsNavOpen){
+              setIsNavOpen(false)
+             }
+          }}  className={`flex gap-2 items-center  rounded w-full px-2 py-1 transition-all cursor-pointer ${isSelected ? "bg-sky-600 ":"hover:bg-sky-900"}`}>
             <div className={`avatar ${isOnline? "avatar-online":"avatar-offline"}`}>
               <figure className='size-12 rounded-full overflow-hidden'>
                 <img src={conversation.profilePic} alt="user avatar" className='object-cover' />

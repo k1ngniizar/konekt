@@ -4,7 +4,7 @@ import useGetConversations from '../../hooks/useGetConversations'
 import useConversation from '../../zustand/useConversation'
 import toast from 'react-hot-toast'
 
-function SearchInput() {
+function SearchInput({setIsNavOpen}) {
   const [search, setSearch] = useState("")
   const {conversations} = useGetConversations()
   const {setSelectedConversation} = useConversation()
@@ -23,6 +23,9 @@ function SearchInput() {
 
      if(conversation) {
       setSelectedConversation(conversation)
+      if(setIsNavOpen){
+        setIsNavOpen(false)
+      }
      } else {
       toast.error("No user found")
      }

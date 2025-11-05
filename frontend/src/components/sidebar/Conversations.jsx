@@ -3,7 +3,7 @@ import Conversation from './Conversation'
 import useGetConversations from '../../hooks/useGetConversations'
 import { FaSpinner } from 'react-icons/fa6'
 
-function Conversations() {
+function Conversations({setIsNavOpen}) {
   const {loading, conversations} = useGetConversations()
 
   // console.log(conversations)
@@ -16,7 +16,7 @@ function Conversations() {
             <FaSpinner className=' size-10 animate-spin' />
           </div>
         ) :
-      <Conversation conversations={conversations}/>
+      <Conversation conversations={conversations} setIsNavOpen={setIsNavOpen}/>
       }
     </div>
   )
