@@ -1,11 +1,11 @@
 import React, { useEffect } from 'react'
 import Messages from './Messages'
 import MessageInput from './MessageInput'
-import {TiMessages} from "react-icons/ti"
 import useConversation from '../../zustand/useConversation'
 import { useAuthContext } from '../../context/AuthContext'
+import { BiChat } from 'react-icons/bi'
 
-function MessageContainer() {
+function MessageContainer({setIsNavOpen}) {
   const {selectedConversation, setSelectedConversation} = useConversation()
   const {authUser} = useAuthContext()
   const noChatSelected = selectedConversation? false : true;
@@ -20,7 +20,7 @@ function MessageContainer() {
     {
       noChatSelected ? (
         <section className='md:min-w-[450px] flex flex-col flex-1'>
-          <NoChatSelected user={authUser}/>
+          <NoChatSelected user={authUser} setIsNavOpen={setIsNavOpen} />
         </section>
       ) : (
         <section className='md:min-w-[450px] flex flex-col flex-1'>
@@ -43,13 +43,15 @@ function MessageContainer() {
 }
 
 
-function NoChatSelected({user}) {
+function NoChatSelected({user, setIsNavOpen}) {
   return (
     <div className='flex items-center justify-center w-full h-full'>
       <div className='px-4 text-center sm:text-lg md:text-xl text-gray-200 font-semibold flex flex-col items-center gap-2'>
         <p>Welcome 👋 {user.username}</p>
-        <p>Select a chat to start messaging</p>
-        <TiMessages className="text-3xl md:text-6xl text-center" />
+        <div onClick={()=>setIsNavOpen(true)}  className='flex items-center justify-center flex-col'>
+          <p>Click here to select a chat</p>
+          <BiChat className="text-3xl md:text-6xl text-center" />
+        </div>
       </div>
     </div>
   )

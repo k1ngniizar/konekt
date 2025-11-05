@@ -1,6 +1,7 @@
 import React from 'react'
 import useConversation from '../../zustand/useConversation';
 import { useSocketContext } from '../../context/SocketContext';
+import { BiChat } from 'react-icons/bi';
 
 function Conversation({conversations, setIsNavOpen}) {
   const {selectedConversation, setSelectedConversation} = useConversation()
@@ -31,7 +32,7 @@ function Conversation({conversations, setIsNavOpen}) {
             <div className='flex flex-col flex-1'>
               <div className='flex gap-3 justify-between'>
                 <p className='font-bold text-gray-300'>{conversation.fullName.split(" ")[0]}</p>
-                <span className='text-xl'>😒</span>
+                <BiChat className='text-gray-600'/>
               </div>
             </div>
           </button>

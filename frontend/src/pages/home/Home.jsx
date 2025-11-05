@@ -14,7 +14,7 @@ function Home() {
         />
       
       <Sidebar setIsNavOpen={setIsNavOpen} isNavOpen={isNavOpen}/>
-      <MessageContainer/>
+      <MessageContainer setIsNavOpen={setIsNavOpen} />
     </main>
   )
 }

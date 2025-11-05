@@ -8,7 +8,7 @@ function Sidebar({isNavOpen, setIsNavOpen}) {
     <>
     {
       isNavOpen && (
-        <section className='border-r border-slate-500 p-4 absolute top-0 bottom-0 left-0 sm:hidden z-20 bg-gray-900 flex-col overflow-auto'>
+        <section className='border-r border-slate-500 p-4 absolute top-0 bottom-0 left-0 sm:hidden z-20 bg-gray-900 flex flex-col'>
           <SearchInput setIsNavOpen={setIsNavOpen} />
           <div className='divider px-3'/>
           <Conversations setIsNavOpen={setIsNavOpen} />
@@ -16,7 +16,7 @@ function Sidebar({isNavOpen, setIsNavOpen}) {
         </section>
       )
     }
-    <section className='border-r border-slate-500 p-4 hidden sm:flex flex-col'>
+    <section className='relative border border-slate-500 p-4 hidden sm:flex flex-col'>
       <SearchInput />
       <div className='divider px-3'/>
       <Conversations />
