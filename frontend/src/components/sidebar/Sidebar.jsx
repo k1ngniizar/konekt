@@ -8,12 +8,16 @@ function Sidebar({isNavOpen, setIsNavOpen}) {
     <>
     {
       isNavOpen && (
+        <>
+
+        <div onClick={()=>setIsNavOpen(false)} className='inset-0 z-20 backdrop-blur-xs  fixed bg-black/50'/>
         <section className='border-r border-slate-500 p-4 absolute top-0 bottom-0 left-0 sm:hidden z-20 bg-gray-900 flex flex-col'>
           <SearchInput setIsNavOpen={setIsNavOpen} />
           <div className='divider px-3'/>
           <Conversations setIsNavOpen={setIsNavOpen} />
           <LogoutButton />
         </section>
+        </>
       )
     }
     <section className='relative border-r border-slate-500 p-4 hidden sm:flex flex-col'>
