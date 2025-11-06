@@ -13,7 +13,7 @@ function Login() {
     await login(username,password)
    }
   return (
-    <div className="flex flex-col items-center justify-center sm:min-w-96 sm:h-fit h-full w-full mx-auto">
+    <div className="flex flex-col items-center justify-center sm:min-w-96 sm:h-fit h-full sm:w-fit w-full mx-auto">
       <div className="w-full h-full items-center justify-center flex flex-col p-6 sm:rounded-lg shadow-md bg-gray-400/10">
         <h1 className="text-3xl font-semibold text-center text-gray-300">
           Login to

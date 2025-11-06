@@ -22,7 +22,7 @@ function Signup() {
   }
 
   return (
-    <div className="flex flex-col items-center justify-center sm:min-w-96 w-full sm:h-fit h-full mx-auto">
+    <div className="flex flex-col items-center justify-center sm:min-w-96 w-full sm:w-fit sm:h-fit h-full mx-auto">
       <div className="w-full h-full flex flex-col items-center justify-center p-6 sm:rounded-lg shadow-md bg-gray-400/10">
         <h1 className="text-3xl font-semibold text-center text-gray-300">
           Sign up to
