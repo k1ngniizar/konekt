@@ -47,8 +47,12 @@ function NoChatSelected({user, setIsNavOpen}) {
     <div className='flex items-center justify-center w-full h-full'>
       <div className='px-4 text-center sm:text-lg md:text-xl text-gray-200 font-semibold flex flex-col items-center gap-2'>
         <p>Welcome 👋 {user.username}</p>
-        <div onClick={()=>setIsNavOpen(true)}  className='flex items-center justify-center flex-col'>
+        <div onClick={()=>setIsNavOpen(true)}  className='sm:hidden flex items-center justify-center flex-col'>
           <p>Click here to select a chat</p>
+          <BiChat className="text-3xl md:text-6xl text-center" />
+        </div>
+        <div className='sm:flex hidden items-center justify-center flex-col'>
+          <p>Select a chat to start messaging</p>
           <BiChat className="text-3xl md:text-6xl text-center" />
         </div>
       </div>
